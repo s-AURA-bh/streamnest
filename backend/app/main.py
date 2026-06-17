@@ -10,7 +10,7 @@ from app.services.storage import ensure_upload_dirs
 
 settings = get_settings()
 ensure_upload_dirs()
-Base.metadata.create_all(bind=engine)ø
+Base.metadata.create_all(bind=engineø
 
 
 app = FastAPI(title=settings.app_name, version="1.0.0")
