@@ -1,0 +1,11 @@
+node_modules/
+.next/
+__pycache__/
+*.py[cod]
+.venv/
+.env
+backend/uploads/videos/*
+backend/uploads/thumbnails/*
+!backend/uploads/videos/.gitkeep
+!backend/uploads/thumbnails/.gitkeep
+.DS_Store
