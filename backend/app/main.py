@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from app.db.session import Base, engine
+from app.models.user import User
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
@@ -8,6 +10,8 @@ from app.services.storage import ensure_upload_dirs
 
 settings = get_settings()
 ensure_upload_dirs()
+Base.metadata.create_all(bind=engine)ø
+
 
 app = FastAPI(title=settings.app_name, version="1.0.0")
 
