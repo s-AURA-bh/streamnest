@@ -21,7 +21,7 @@ from app.db.session import get_db
 from app.models.user import User
 from app.schemas.video import DashboardStats, VideoList, VideoRead, VideoUpdate
 from app.services.storage import public_url, save_upload
-from app.services.cloudinary_storage import upload_video as upload_video_file, upload_imageY
+from app.services.cloudinary_storage import upload_video as upload_video_file, upload_image
 
 router = APIRouter(prefix="/videos", tags=["videos"])
 
