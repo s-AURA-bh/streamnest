@@ -16,17 +16,18 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title=settings.app_name, version="1.0.0")
 
-@app.on_event("startup")
-def startup_event():
-    init_db()
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.cors_origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.on_event("startup")
+def startup_event():
+    init_db()
+
 
 app.mount("/media", StaticFiles(directory=settings.upload_dir), name="media")
 
