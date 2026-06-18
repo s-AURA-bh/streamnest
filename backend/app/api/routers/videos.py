@@ -21,6 +21,7 @@ from app.db.session import get_db
 from app.models.user import User
 from app.schemas.video import DashboardStats, VideoList, VideoRead, VideoUpdate
 from app.services.storage import public_url, save_upload
+from app.services.cloudinary_storage import upload_video, upload_image
 
 router = APIRouter(prefix="/videos", tags=["videos"])
 
@@ -136,8 +137,8 @@ async def upload_video(
     category = get_category(db, category_id)
     if category is None:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid category.")
-    video_path = await save_upload(video, kind="videos")
-    thumbnail_path = await save_upload(thumbnail, kind="thumbnails")
+    video_path = await upload_video(video)
+thumbnail_path = await upload_image(thumbnail)
     created = create_video(
         db,
         owner=current_user,
