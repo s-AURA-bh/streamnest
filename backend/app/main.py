@@ -7,6 +7,7 @@ from fastapi.staticfiles import StaticFiles
 from app.api.routers import auth, categories, health, users, videos
 from app.core.config import get_settings
 from app.services.storage import ensure_upload_dirs
+from app.db.init_db import init_db
 
 settings = get_settings()
 ensure_upload_dirs()
@@ -14,6 +15,10 @@ Base.metadata.create_all(bind=engine)
 
 
 app = FastAPI(title=settings.app_name, version="1.0.0")
+
+@app.on_event("startup")
+def startup_event():
+    init_db()
 
 app.add_middleware(
     CORSMiddleware,
