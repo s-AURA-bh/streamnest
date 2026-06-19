@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     secret_key: str = Field(min_length=32)
     access_token_expire_minutes: int = 60 * 24
     database_url: str
-    backend_cors_origins: str = "http://localhost:3000"
+    backend_cors_origins: str = "http://localhost:3000,https://streamnest-frontend-2o5v.vercel.app"
     media_base_url: AnyHttpUrl = "https://streamnest-hdup.onrender.com/media"
     upload_dir: str = "uploads"
     max_video_size_mb: int = 500
